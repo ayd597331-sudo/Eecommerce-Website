@@ -9,7 +9,7 @@ const toggleClass = (el, cls) => el?.classList.toggle(cls);
 const Open_Categ_list = () => toggleClass(category_nav_list, "active");
 const open_Menu = () => toggleClass(nav_links, "active");
 const open_close_cart = () => toggleClass(cartElement, "active");
-
+// 
 // وظائف السلة
 const Cart = {
   get: () => JSON.parse(localStorage.getItem("cart")) || [],

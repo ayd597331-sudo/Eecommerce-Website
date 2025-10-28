@@ -8,6 +8,7 @@ form.addEventListener("submit", function(e){
       method: 'POST', 
       body: new FormData(form),
   })
+  // 
   .then((response )=>{
       setTimeout(() => {
           localStorage.removeItem("cart"); // 🧹 امسح الكارت بعد الإرسال

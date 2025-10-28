@@ -21,6 +21,7 @@ var swiper = new Swiper(".slide-swp", {
     autoplay:{
         delay:1500,
     },
+    // ييي
     // الزرارينة اللي هيقلبوا بين المنجات
     navigation:{
         nextEl:".swiper-button-next",

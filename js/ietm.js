@@ -1,8 +1,12 @@
+// دي دالة بتجلب البيانات من ملف خارجي (في حالتنا products.json)
 fetch('products.json')
+// res بتمثل “الاستجابة” من السيرفر،
   .then(res => res.json())
+  // البيانات اللي عندك يعني 
   .then(data => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // هنا بتسدعي الدفات اللي هتحط في المنتجات 
     const sections = {
       sale: document.getElementById("swiper_items_sale"),
       electronics: document.getElementById("swiper_elctronics"),
