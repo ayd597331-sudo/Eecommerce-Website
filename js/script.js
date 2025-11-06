@@ -14,22 +14,29 @@ const open_close_cart = () => toggleClass(cartElement, "active");
 const Cart = {
   get: () => JSON.parse(localStorage.getItem("cart")) || [],
   set: (cart) => localStorage.setItem("cart", JSON.stringify(cart)),
-
+// الاضافة الى السلة
   add(product) {
     const cart = this.get();
+    //...product → نسخ كل خصائص المنتج.
     cart.push({ ...product, quantity: 1 });
+    // حفظ  بعد الإضافة.
     this.set(cart);
+    // تحديث واجهة المستخدم
     this.update();
   },
 
+// الحذف من السلة
   remove(index) {
     const cart = this.get();
+    // إزالة عنصر واحد من  بمؤشر index.
     const removed = cart.splice(index, 1)[0];
     this.set(cart);
     this.update();
+    // إعادة تفعيل زر "Add to Cart" للمنتج ال
     this.updateButtons(removed.id);
   },
 
+  // تحديث أزرار الإضافة للمنتجات بعد الحذف 
   updateButtons(productId) {
     document
       .querySelectorAll(`.btn_add_cart[data-id="${productId}"]`)
@@ -38,12 +45,12 @@ const Cart = {
         btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`;
       });
   },
-
+// تحديث الكارت
   update() {
     const cart = this.get();
-    let total = 0,
-      count = 0;
-    cartItemsContainer.innerHTML = "";
+    let total = 0, //المجوع الكلي 
+      count = 0; //عدد المنتجات
+    cartItemsContainer.innerHTML = ""; //محتوى السلة يبقا فاضي 
 
     cart.forEach((item, index) => {
       const itemTotal = item.price * item.quantity;
@@ -76,13 +83,14 @@ const Cart = {
     document.querySelector(".count_item_header").textContent = count;
   },
 
+  // زرار الاضافة 
   increase(index) {
     const cart = this.get();
     cart[index].quantity++;
     this.set(cart);
     this.update();
   },
-
+// زرار الحذف
   decrease(index) {
     const cart = this.get();
     if (cart[index].quantity > 1) cart[index].quantity--;
